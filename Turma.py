@@ -8,7 +8,7 @@ class Turma:
         self.__alunos = []
         self.__Professor = Professor()
         self.__Curso = Curso()
-        self.__Disciplina = Disciplina()
+        self.__disciplinas = []
 
     def getNome(self):
             return self.__nome
@@ -16,19 +16,25 @@ class Turma:
     def setNome(self, nome):
             self.__nome = nome
 
-    def addAlunos(self, alunos):
-        self.__alunos.append(alunos)
+    def addAlunos(self, nome_aluno):
+        self.__alunos.append(nome_aluno)
 
-    def removeAlunos(self, alunos):
-        self.__alunos.remove(alunos)
+    def removeAlunoDaTurma(self, nome_aluno):
+        for aluno in self.__alunos:
+            if aluno.getNome() == nome_aluno:
+                self.__alunos.remove(aluno)
+                return f"|{nome_aluno}| foi removido da turma |{self.getNome()}|."
+            return f"|{nome_aluno}| não está matriculado na turma |{self.getNome()}|."
 
-    def getAlunos(self):
-        return self.__alunos
+
+
+    def imprimirAlunos(self):
+        return ", ".join(aluno.getNome() for aluno in self.__alunos)
 
     def setProfessor(self, Professor):
         self.__Professor = Professor
 
-    def getProfesser(self):
+    def getProfessor(self):
         return self.__Professor
 
     def setCurso(self, Curso):
@@ -37,14 +43,17 @@ class Turma:
     def getCurso(self):
         return self.__Curso
 
-    def getDisciplina(self):
-        return self.__Disciplina
+    def addDisciplina(self, disciplinas):
+        self.__disciplinas.append(disciplinas)
 
-    def setDisciplina(self, Disciplina):
-        self.__Disciplina = Disciplina
+    def removeDisciplina(self, disciplinas):
+        self.__disciplinas.remove(disciplinas)
 
-    def toString(self):
-        string = "Alunos: "
-        for i in self.__alunos:
-            string += f"{i}"
-        return print(f"Turma: {self.getNome()}\nProfessor: {self.getProfesser()}\n{string}\nCurso: {self.getCurso()}\nDisciplina: {self.getDisciplina()}")
+    def imprimirDisciplinas(self):
+        return ", ".join(disciplinas.getNome() for disciplinas in self.__disciplinas)
+
+    def verificarAlunoNaTurma(self, nome_aluno):
+        for aluno in self.__alunos:
+            if aluno.getNome() == nome_aluno:
+                return f"|{nome_aluno}| está matriculado na turma |{self.getNome()}|."
+        return f"|{nome_aluno}| não está matriculado na turma |{self.getNome()}|."

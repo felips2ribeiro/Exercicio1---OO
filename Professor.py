@@ -11,8 +11,5 @@ class Professor(Pessoa):
     def removeTurmas(self, turmas):
         self.__turmas.remove(turmas)
 
-    def toString(self):
-        string = "Turmas: "
-        for i in self.__turmas:
-            string += f"{i} |"
-        return f"Professor: {self.getNome()}\n{string}"
+    def imprimirTurmas(self):
+        return ", ".join(turma.getNome() for turma in self.__turmas)

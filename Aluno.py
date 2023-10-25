@@ -20,3 +20,4 @@ class Aluno(Pessoa):
     def setCurso(self, Curso):
         self.__Curso = Curso
 
+
